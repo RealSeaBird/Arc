@@ -1,0 +1,29 @@
+#Example bot script
+#Make sure to run (pip install discord.py) in the termnial
+
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True  
+
+bot = commands.Bot(command_prefix="/", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user.name} ({bot.user.id})')
+    await bot.tree.sync()
+
+@bot.command()
+async def alive(ctx):
+    await ctx.send('Yes i am and im going to take over the planet') #example command (Non splash)
+
+@bot.tree.command(name="greet", description="Greet a user") #example command (Splash mention user)
+async def greet(interaction: discord.Interaction, user: discord.Member):
+    await interaction.response.send_message(f"Hello, {user.mention}!")
+
+@bot.tree.command(name="goof", description="Stop being goofy!") #Example command (Splash display text)
+async def goof(interaction: discord.Interaction):
+    await interaction.response.send_message("Stop being goofy!")
+
+bot.run('YOUR BOT TOKEN HERE')
