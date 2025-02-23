@@ -26,4 +26,4 @@ async def greet(interaction: discord.Interaction, user: discord.Member):
 async def goof(interaction: discord.Interaction):
     await interaction.response.send_message("Stop being goofy!")
 
-bot.run('YOUR BOT TOKEN HERE')
+bot.run('YOUR BOT TOKEN HERE') #Later on you should have your bots token stored in a .env file
